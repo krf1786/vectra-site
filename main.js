@@ -1,51 +1,87 @@
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
 const serviceDetails = {
   marketing: {
-    index: "[WEB_01] / MARKETING",
+    index: "01 — Marketing",
     title: "Marketing Websites",
     description:
       "A complete website for businesses that need to explain a valuable offer clearly, establish trust quickly, and generate the right next action.",
-    items: ["Positioning, sitemap, and content hierarchy", "Responsive design and production development", "CMS, lead capture, analytics, and launch QA"],
+    items: [
+      "Positioning, sitemap, and content hierarchy",
+      "Responsive design and production development",
+      "CMS, lead capture, analytics, and launch QA",
+    ],
   },
   commerce: {
-    index: "[WEB_02] / COMMERCE",
+    index: "02 — Commerce",
     title: "E-commerce",
     description:
       "A focused storefront that helps customers understand the products, find the right option, and complete a purchase without unnecessary friction.",
-    items: ["Catalog and product-page experience", "Commerce, payment, and fulfillment integrations", "Responsive build, analytics, and launch support"],
+    items: [
+      "Catalog and product-page experience",
+      "Commerce, payment, and fulfillment integrations",
+      "Responsive build, analytics, and launch support",
+    ],
   },
   campaign: {
-    index: "[WEB_03] / CAMPAIGN",
+    index: "03 — Campaign",
     title: "Landing Pages",
     description:
       "A dedicated page for one audience, one offer, and one conversion goal, built to support campaigns, launches, and focused lead generation.",
-    items: ["Offer structure and conversion-focused layout", "Responsive development and form integration", "Analytics, testing foundation, and deployment"],
+    items: [
+      "Offer structure and conversion-focused layout",
+      "Responsive development and form integration",
+      "Analytics, testing foundation, and deployment",
+    ],
   },
   optimization: {
-    index: "[WEB_04] / OPTIMIZATION",
+    index: "04 — Optimization",
     title: "Redesign & Optimization",
     description:
       "A practical improvement path for an existing website that is unclear, slow, inaccessible, difficult to manage, or no longer represents the business.",
-    items: ["Content, UX, performance, and accessibility audit", "Prioritized redesign or rebuild plan", "Implementation, migration, and measurement setup"],
+    items: [
+      "Content, UX, performance, and accessibility audit",
+      "Prioritized redesign or rebuild plan",
+      "Implementation, migration, and measurement setup",
+    ],
   },
 };
 
+const header = document.querySelector(".site-header");
 const menuButton = document.querySelector(".menu-button");
+const nav = document.getElementById("siteNav");
 const navLinks = [...document.querySelectorAll(".site-nav a")];
+
+const closeMenu = () => {
+  document.body.classList.remove("menu-open");
+  nav.classList.remove("open");
+  menuButton.setAttribute("aria-expanded", "false");
+};
 
 menuButton.addEventListener("click", () => {
   const open = document.body.classList.toggle("menu-open");
+  nav.classList.toggle("open", open);
   menuButton.setAttribute("aria-expanded", String(open));
 });
 
 navLinks.forEach((link) => {
-  link.addEventListener("click", () => {
-    document.body.classList.remove("menu-open");
-    menuButton.setAttribute("aria-expanded", "false");
-  });
+  link.addEventListener("click", closeMenu);
 });
+
+window.addEventListener("resize", () => {
+  if (window.innerWidth > 1040) closeMenu();
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && document.body.classList.contains("menu-open")) {
+    closeMenu();
+    menuButton.focus();
+  }
+});
+
+const onScroll = () => header.classList.toggle("scrolled", window.scrollY > 8);
+onScroll();
+window.addEventListener("scroll", onScroll, { passive: true });
 
 const revealItems = document.querySelectorAll(".reveal");
 if (reducedMotion) {
@@ -75,7 +111,7 @@ const sectionObserver = new IntersectionObserver(
       });
     });
   },
-  { rootMargin: "-30% 0px -60% 0px" },
+  { rootMargin: "-35% 0px -60% 0px" },
 );
 sections.forEach((section) => sectionObserver.observe(section));
 
@@ -126,12 +162,8 @@ const buildMailto = (data) => {
     [
       `Name: ${data.get("name")}`,
       `Email: ${data.get("email")}`,
-      `Company: ${data.get("company") || "Not provided"}`,
-      `Current website: ${data.get("current_url") || "Not provided"}`,
       `Project type: ${data.get("service")}`,
-      `Approximate size: ${data.get("page_count") || "Not provided"}`,
       `Timing: ${data.get("timeline") || "Not provided"}`,
-      `Integrations: ${data.get("integrations") || "Not provided"}`,
       "",
       "Website brief:",
       data.get("message"),
@@ -178,24 +210,17 @@ contactForm.addEventListener("submit", async (event) => {
   }
 
   submitButton.disabled = true;
-  submitButton.textContent = "Transmitting...";
+  submitButton.textContent = "Sending...";
   formStatus.textContent = "Sending your request securely...";
   formStatus.className = "";
 
   try {
     const response = await fetch(formEndpoint, {
       method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
+      headers: { Accept: "application/json", "Content-Type": "application/json" },
       body: JSON.stringify(Object.fromEntries(data)),
     });
-
-    if (!response.ok) {
-      throw new Error(`Submission failed with status ${response.status}`);
-    }
-
+    if (!response.ok) throw new Error(`Submission failed with status ${response.status}`);
     contactForm.reset();
     formStatus.textContent = "Request sent. We’ll reply directly.";
   } catch (error) {
@@ -205,7 +230,7 @@ contactForm.addEventListener("submit", async (event) => {
     formFallback.classList.add("visible");
   } finally {
     submitButton.disabled = false;
-    submitButton.innerHTML = "Plan my website <span>→</span>";
+    submitButton.innerHTML = "Plan my website <span>&rarr;</span>";
   }
 });
 
@@ -223,163 +248,3 @@ const updateClock = () => {
 };
 updateClock();
 setInterval(updateClock, 1000);
-
-if (finePointer && !reducedMotion) {
-  const cursor = document.getElementById("cursor");
-  const cursorGlow = document.getElementById("cursorGlow");
-  let mouseX = window.innerWidth / 2;
-  let mouseY = window.innerHeight / 2;
-  let glowX = mouseX;
-  let glowY = mouseY;
-
-  window.addEventListener("mousemove", (event) => {
-    mouseX = event.clientX;
-    mouseY = event.clientY;
-    cursor.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
-    document.body.style.setProperty("--mx", `${mouseX}px`);
-    document.body.style.setProperty("--my", `${mouseY}px`);
-  });
-
-  const followGlow = () => {
-    glowX += (mouseX - glowX) * 0.12;
-    glowY += (mouseY - glowY) * 0.12;
-    cursorGlow.style.transform = `translate(${glowX - 120}px, ${glowY - 120}px)`;
-    requestAnimationFrame(followGlow);
-  };
-  followGlow();
-
-  document.querySelectorAll("a, button, input, textarea, select").forEach((element) => {
-    element.addEventListener("mouseenter", () => cursor.classList.add("expanded"));
-    element.addEventListener("mouseleave", () => cursor.classList.remove("expanded"));
-  });
-
-  document.querySelectorAll(".magnetic").forEach((element) => {
-    element.addEventListener("mousemove", (event) => {
-      const bounds = element.getBoundingClientRect();
-      const x = event.clientX - (bounds.left + bounds.width / 2);
-      const y = event.clientY - (bounds.top + bounds.height / 2);
-      element.style.transform = `translate(${x * 0.16}px, ${y * 0.16}px)`;
-    });
-    element.addEventListener("mouseleave", () => {
-      element.style.transform = "";
-    });
-  });
-
-  document.querySelectorAll("[data-tilt]").forEach((card) => {
-    card.addEventListener("mousemove", (event) => {
-      const bounds = card.getBoundingClientRect();
-      const x = event.clientX - bounds.left;
-      const y = event.clientY - bounds.top;
-      const rotateX = ((y - bounds.height / 2) / bounds.height) * -8;
-      const rotateY = ((x - bounds.width / 2) / bounds.width) * 8;
-      card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-      card.style.setProperty("--cx", `${x}px`);
-      card.style.setProperty("--cy", `${y}px`);
-    });
-    card.addEventListener("mouseleave", () => {
-      card.style.transform = "";
-    });
-  });
-}
-
-document.querySelectorAll("[data-scramble]").forEach((element) => {
-  const original = element.dataset.scramble;
-  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789[]{}<>/_";
-  let animationFrame;
-
-  element.addEventListener("mouseenter", () => {
-    if (reducedMotion) return;
-    cancelAnimationFrame(animationFrame);
-    let progress = 0;
-    const animate = () => {
-      element.textContent = [...original]
-        .map((character, index) => {
-          if (character === " " || index < progress) return character;
-          return characters[Math.floor(Math.random() * characters.length)];
-        })
-        .join("");
-      progress += 0.45;
-      if (progress < original.length) {
-        animationFrame = requestAnimationFrame(animate);
-      } else {
-        element.textContent = original;
-      }
-    };
-    animate();
-  });
-});
-
-const saveDataEnabled = navigator.connection?.saveData === true;
-
-if (!reducedMotion && !saveDataEnabled) {
-  const canvas = document.getElementById("particleField");
-  const context = canvas.getContext("2d");
-  const particles = [];
-  const particleCount = window.innerWidth < 720 ? 12 : 22;
-  let animationFrame = null;
-  let lastFrame = 0;
-
-  const resizeCanvas = () => {
-    const ratio = Math.min(window.devicePixelRatio || 1, 2);
-    canvas.width = window.innerWidth * ratio;
-    canvas.height = window.innerHeight * ratio;
-    canvas.style.width = `${window.innerWidth}px`;
-    canvas.style.height = `${window.innerHeight}px`;
-    context.setTransform(ratio, 0, 0, ratio, 0, 0);
-  };
-  resizeCanvas();
-  window.addEventListener("resize", resizeCanvas);
-
-  for (let index = 0; index < particleCount; index += 1) {
-    particles.push({
-      x: Math.random() * window.innerWidth,
-      y: Math.random() * window.innerHeight,
-      xSpeed: (Math.random() - 0.5) * 0.18,
-      ySpeed: (Math.random() - 0.5) * 0.18,
-      radius: Math.random() + 0.4,
-    });
-  }
-
-  const drawParticles = (timestamp) => {
-    animationFrame = requestAnimationFrame(drawParticles);
-    if (timestamp - lastFrame < 33) return;
-    lastFrame = timestamp;
-    context.clearRect(0, 0, window.innerWidth, window.innerHeight);
-    particles.forEach((particle, index) => {
-      particle.x = (particle.x + particle.xSpeed + window.innerWidth) % window.innerWidth;
-      particle.y = (particle.y + particle.ySpeed + window.innerHeight) % window.innerHeight;
-      context.beginPath();
-      context.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-      context.fillStyle = "rgba(119, 149, 255, 0.3)";
-      context.fill();
-
-      for (let otherIndex = index + 1; otherIndex < particles.length; otherIndex += 1) {
-        const other = particles[otherIndex];
-        const distance = Math.hypot(particle.x - other.x, particle.y - other.y);
-        if (distance > 120) continue;
-        context.beginPath();
-        context.moveTo(particle.x, particle.y);
-        context.lineTo(other.x, other.y);
-        context.strokeStyle = `rgba(119, 149, 255, ${(1 - distance / 120) * 0.07})`;
-        context.lineWidth = 0.5;
-        context.stroke();
-      }
-    });
-  };
-
-  const updateAnimationState = () => {
-    if (document.hidden) {
-      cancelAnimationFrame(animationFrame);
-      animationFrame = null;
-      return;
-    }
-    if (!animationFrame) {
-      animationFrame = requestAnimationFrame(drawParticles);
-    }
-  };
-
-  document.addEventListener("visibilitychange", updateAnimationState);
-  updateAnimationState();
-} else {
-  document.getElementById("particleField").hidden = true;
-}

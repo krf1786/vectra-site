@@ -1,27 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
   <defs>
-    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
-      <path d="M48 0H0v48" fill="none" stroke="#7795ff" stroke-opacity=".07"/>
-    </pattern>
-    <radialGradient id="glow">
-      <stop stop-color="#7795ff" stop-opacity=".16"/>
-      <stop offset="1" stop-color="#7795ff" stop-opacity="0"/>
+    <radialGradient id="light" cx="50%" cy="0%" r="100%">
+      <stop stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#eceeec"/>
     </radialGradient>
   </defs>
-  <rect width="1200" height="630" fill="#18212b"/>
-  <rect width="1200" height="630" fill="url(#grid)"/>
-  <circle cx="925" cy="180" r="360" fill="url(#glow)"/>
-  <path d="M72 64v502M1128 64v502" stroke="#38485a"/>
-  <g transform="translate(92 65) scale(.38)">
-    <path d="M48 36H28v108h20M118 36h20v108h-20" fill="none" stroke="#7795ff" stroke-width="8"/>
-    <path d="m59 62 28 59 28-59" fill="none" stroke="#f3f4f6" stroke-width="10" stroke-linejoin="round"/>
-  </g>
-  <text x="157" y="112" fill="#f3f4f6" font-family="sans-serif" font-size="28" font-weight="600">vectra</text>
-  <text x="157" y="136" fill="#9299a8" font-family="sans-serif" font-size="11" letter-spacing="4">SYSTEMS</text>
-  <text x="92" y="258" fill="#f3f4f6" font-family="sans-serif" font-size="54" font-weight="600">High-performance</text>
-  <text x="92" y="348" fill="#7795ff" font-family="sans-serif" font-size="82" font-weight="600">Websites.</text>
-  <text x="96" y="425" fill="#9299a8" font-family="sans-serif" font-size="24">Strategy · Design · Development · Integrations · Launch</text>
-  <path d="M92 504h1016" stroke="#38485a"/>
-  <circle cx="98" cy="548" r="5" fill="#7795ff"/>
-  <text x="118" y="555" fill="#9299a8" font-family="sans-serif" font-size="18">AVAILABLE FOR SELECT PROJECTS</text>
+  <rect width="1200" height="630" fill="url(#light)"/>
+  <path d="M72 0v630M1128 0v630" stroke="#d8dbd6"/>
+  <text x="74" y="82" fill="#16201f" font-family="Manrope,Arial,sans-serif" font-size="28" font-weight="600">Vectra</text>
+  <text x="169" y="81" fill="#137b8b" font-family="IBM Plex Mono,monospace" font-size="11" font-weight="500" letter-spacing="3">SYSTEMS</text>
+  <circle cx="1098" cy="72" r="5" fill="#137b8b"/>
+  <text x="1080" y="78" fill="#76817e" font-family="IBM Plex Mono,monospace" font-size="14" text-anchor="end" letter-spacing="1.5">EST. 2021</text>
+  <text x="600" y="343" fill="#e2e5e1" font-family="Manrope,Arial,sans-serif" font-size="190" font-weight="200" text-anchor="middle" letter-spacing="8">VECTRA</text>
+  <circle cx="98" cy="428" r="5" fill="#137b8b"/>
+  <text x="118" y="435" fill="#137b8b" font-family="IBM Plex Mono,monospace" font-size="15" font-weight="500" letter-spacing="2">WHAT WE DO</text>
+  <text x="92" y="494" fill="#16201f" font-family="Manrope,Arial,sans-serif" font-size="44" font-weight="700">Beautiful, high-performance websites.</text>
+  <text x="92" y="552" fill="#76817e" font-family="IBM Plex Mono,monospace" font-size="17" letter-spacing="1">TRADITIONAL STANDARDS — MODERN SOLUTIONS</text>
 </svg>

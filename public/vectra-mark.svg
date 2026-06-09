@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-labelledby="title">
   <title id="title">Vectra Systems mark</title>
-  <g fill="none" stroke="#7795ff" stroke-width="9" stroke-linecap="square">
+  <g fill="none" stroke="#137b8b" stroke-width="9" stroke-linecap="square">
     <path d="M43 30H23v120h20M137 30h20v120h-20"/>
   </g>
-  <path d="m55 59 35 72 35-72" fill="none" stroke="#f3f4f6" stroke-width="11" stroke-linejoin="round"/>
+  <path d="m55 59 35 72 35-72" fill="none" stroke="#16201f" stroke-width="11" stroke-linejoin="round"/>
 </svg>
