@@ -4,8 +4,8 @@
   "description": "High-performance websites for businesses that need more than a template.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0e1015",
-  "theme_color": "#0e1015",
+  "background_color": "#18212b",
+  "theme_color": "#18212b",
   "icons": [
     {
       "src": "/favicon.svg",

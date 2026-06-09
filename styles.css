@@ -55,10 +55,10 @@
 }
 
 :root {
-  --bg: #0e1015;
-  --surface: #151821;
-  --surface-strong: #1d212c;
-  --border: #2b303d;
+  --bg: #18212b;
+  --surface: #202b38;
+  --surface-strong: #293645;
+  --border: #38485a;
   --accent: #7795ff;
   --accent-dark: #5574e0;
   --cream: #f1f0ec;
@@ -141,18 +141,18 @@ button {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  min-height: 68px;
+  min-height: 76px;
   padding: 0 38px;
   border-bottom: 1px solid var(--border);
-  background: rgb(14 16 21 / 88%);
+  background: rgb(24 33 43 / 90%);
   backdrop-filter: blur(22px);
 }
 
 .logo {
   display: block;
   justify-self: start;
-  width: 142px;
-  height: 40px;
+  width: 190px;
+  height: 56px;
 }
 
 .logo img {
@@ -262,7 +262,7 @@ main > section:not(.hero) {
 .hero {
   display: grid;
   grid-template-columns: minmax(340px, 0.82fr) minmax(520px, 1.18fr);
-  min-height: calc(100vh - 68px);
+  min-height: calc(100vh - 76px);
   padding-top: 48px;
   padding-bottom: 48px;
 }
@@ -298,6 +298,18 @@ main > section:not(.hero) {
   font: 600 10px var(--sans);
   letter-spacing: 0.14em;
   text-transform: uppercase;
+}
+
+.brand-principle {
+  margin: 0 0 18px;
+  color: var(--cream);
+  font: 600 clamp(0.72rem, 1vw, 0.88rem) var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.brand-principle span {
+  color: var(--accent);
 }
 
 .hero h1 {
@@ -1039,7 +1051,7 @@ main > section:not(.hero) {
   border: 1px solid var(--border);
   border-radius: 0;
   outline: 0;
-  background: #11141b;
+  background: #141d27;
   font-size: 13px;
   transition: border-color 180ms ease, box-shadow 180ms ease;
 }
@@ -1102,7 +1114,7 @@ main > section:not(.hero) {
   padding: 0 32px;
   color: var(--muted);
   border-top: 1px solid var(--border);
-  background: rgb(14 16 21 / 90%);
+  background: rgb(24 33 43 / 92%);
   font: 500 9px var(--sans);
 }
 
@@ -1126,7 +1138,7 @@ main > section:not(.hero) {
   padding: 38px;
   color: var(--text);
   border: 1px solid rgb(119 149 255 / 45%);
-  background: #171a22;
+  background: #202b38;
   box-shadow: 0 30px 100px rgb(0 0 0 / 70%);
   cursor: default;
 }
@@ -1248,8 +1260,8 @@ main > section:not(.hero) {
   }
 
   .logo {
-    width: 112px;
-    height: 34px;
+    width: 160px;
+    height: 48px;
   }
 
   .site-nav {
@@ -1307,6 +1319,11 @@ main > section:not(.hero) {
     padding: 0 18px;
   }
 
+  .logo {
+    width: 132px;
+    height: 42px;
+  }
+
   .menu-button {
     display: block;
     grid-column: 2;
@@ -1327,7 +1344,7 @@ main > section:not(.hero) {
     display: grid;
     gap: 0;
     padding: 18px;
-    background: rgb(14 16 21 / 98%);
+    background: rgb(24 33 43 / 98%);
     border-bottom: 1px solid var(--border);
     transform: translateY(-140%);
     visibility: hidden;
