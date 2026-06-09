@@ -1,57 +1,57 @@
 @font-face {
-  font-family: "Inter";
+  font-family: "Manrope";
   font-style: normal;
   font-display: swap;
   font-weight: 400;
-  src: url("@fontsource/inter/files/inter-latin-400-normal.woff2") format("woff2");
+  src: url("@fontsource/manrope/files/manrope-latin-400-normal.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: "Inter";
+  font-family: "Manrope";
   font-style: normal;
   font-display: swap;
   font-weight: 500;
-  src: url("@fontsource/inter/files/inter-latin-500-normal.woff2") format("woff2");
+  src: url("@fontsource/manrope/files/manrope-latin-500-normal.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: "Inter";
+  font-family: "Manrope";
   font-style: normal;
   font-display: swap;
   font-weight: 600;
-  src: url("@fontsource/inter/files/inter-latin-600-normal.woff2") format("woff2");
+  src: url("@fontsource/manrope/files/manrope-latin-600-normal.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: "JetBrains Mono";
+  font-family: "IBM Plex Mono";
   font-style: normal;
   font-display: swap;
   font-weight: 400;
-  src: url("@fontsource/jetbrains-mono/files/jetbrains-mono-latin-400-normal.woff2") format("woff2");
+  src: url("@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: "JetBrains Mono";
+  font-family: "IBM Plex Mono";
   font-style: normal;
   font-display: swap;
   font-weight: 500;
-  src: url("@fontsource/jetbrains-mono/files/jetbrains-mono-latin-500-normal.woff2") format("woff2");
+  src: url("@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-500-normal.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: "JetBrains Mono";
+  font-family: "IBM Plex Mono";
   font-style: normal;
   font-display: swap;
   font-weight: 600;
-  src: url("@fontsource/jetbrains-mono/files/jetbrains-mono-latin-600-normal.woff2") format("woff2");
+  src: url("@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-600-normal.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: "JetBrains Mono";
+  font-family: "IBM Plex Mono";
   font-style: normal;
   font-display: swap;
   font-weight: 700;
-  src: url("@fontsource/jetbrains-mono/files/jetbrains-mono-latin-700-normal.woff2") format("woff2");
+  src: url("@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-700-normal.woff2") format("woff2");
 }
 
 :root {
@@ -65,8 +65,8 @@
   --text: #f3f4f6;
   --muted: #9299a8;
   --danger: #ff7070;
-  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
-  --sans: "Inter", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  --sans: "Manrope", system-ui, sans-serif;
 }
 
 * {
@@ -316,7 +316,7 @@ main > section:not(.hero) {
   max-width: 720px;
   margin: 0;
   font: 600 clamp(3.3rem, 5.9vw, 7.4rem) / 0.86 var(--sans);
-  letter-spacing: -0.075em;
+  letter-spacing: -0.065em;
 }
 
 .hero h1 span,
@@ -866,7 +866,7 @@ main > section:not(.hero) {
   max-width: 760px;
   font-size: clamp(2.8rem, 6.4vw, 6.6rem);
   line-height: 0.92;
-  letter-spacing: -0.07em;
+  letter-spacing: -0.06em;
 }
 
 .section-heading--large > p {
@@ -991,7 +991,7 @@ main > section:not(.hero) {
   max-width: 600px;
   margin: 0 0 24px;
   font: 600 clamp(3rem, 6.2vw, 6.5rem)/0.9 var(--sans);
-  letter-spacing: -0.075em;
+  letter-spacing: -0.065em;
 }
 
 .contact__copy > p:not(.section-index) {

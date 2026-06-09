@@ -12,7 +12,7 @@
     "vite": "^7.0.0"
   },
   "dependencies": {
-    "@fontsource/inter": "^5.2.8",
-    "@fontsource/jetbrains-mono": "^5.2.8"
+    "@fontsource/ibm-plex-mono": "^5.2.7",
+    "@fontsource/manrope": "^5.2.8"
   }
 }
