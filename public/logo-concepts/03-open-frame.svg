@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 180">
+  <path d="M31 139V36h105v70" fill="none" stroke="#7795ff" stroke-width="8"/>
+  <path d="m50 59 34 69 34-69" fill="none" stroke="#f3f4f6" stroke-width="10" stroke-linejoin="round"/>
+  <path d="M115 139h21" stroke="#7795ff" stroke-width="8"/>
+  <text x="176" y="106" fill="#f3f4f6" font-family="Inter,Arial,sans-serif" font-size="64" font-weight="600" letter-spacing="-4">vectra</text>
+  <text x="470" y="106" fill="#7795ff" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="600">/ systems</text>
+</svg>

@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0e1015" />
+    <title>Vectra Logo Explorations</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/logo-lab.css" />
+  </head>
+  <body>
+    <header class="lab-header">
+      <a href="/" class="back-link">← Back to website</a>
+      <div class="lab-controls" aria-label="Preview controls">
+        <button class="control active" type="button" data-theme="dark">Dark</button>
+        <button class="control" type="button" data-theme="light">Mono light</button>
+        <button class="control active" type="button" data-view="full">Full lockup</button>
+        <button class="control" type="button" data-view="mark">Mark only</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="lab-intro">
+        <p>VECTRA / IDENTITY STUDY 01</p>
+        <h1>Six directions for the next logo.</h1>
+        <div class="intro-copy">
+          <p>
+            Each option keeps the identity precise and digital without defaulting to generic
+            developer-tool branding. The cobalt is a signal, not the whole personality.
+          </p>
+          <span>Click any concept to isolate it.</span>
+        </div>
+      </section>
+
+      <section class="concept-grid" aria-label="Logo concepts">
+        <article class="concept-card" data-concept="01">
+          <button class="concept-preview" type="button" aria-label="Open Refined Bracket concept">
+            <img class="full-logo" src="/logo-concepts/01-refined-bracket.svg" alt="Refined bracket Vectra Systems logo" />
+            <img class="mark-logo" src="/logo-concepts/01-refined-bracket-mark.svg" alt="" />
+          </button>
+          <div class="concept-copy">
+            <span>01 / EVOLUTION</span>
+            <h2>Refined Bracket</h2>
+            <p>The safest evolution. It preserves recognition while making the mark cleaner, quieter, and less code-literal.</p>
+            <b>Best for: continuity</b>
+          </div>
+        </article>
+
+        <article class="concept-card featured" data-concept="02">
+          <button class="concept-preview" type="button" aria-label="Open Vector Point concept">
+            <img class="full-logo" src="/logo-concepts/02-vector-point.svg" alt="Vector Point Vectra Systems logo" />
+            <img class="mark-logo" src="/logo-concepts/02-vector-point-mark.svg" alt="" />
+          </button>
+          <div class="concept-copy">
+            <span>02 / RECOMMENDED</span>
+            <h2>Vector Point</h2>
+            <p>A directional V ending in a precise node. It suggests movement, decisions, and a clear destination without feeling overly technical.</p>
+            <b>Best for: distinctiveness</b>
+          </div>
+        </article>
+
+        <article class="concept-card" data-concept="03">
+          <button class="concept-preview" type="button" aria-label="Open Open Frame concept">
+            <img class="full-logo" src="/logo-concepts/03-open-frame.svg" alt="Open Frame Vectra Systems logo" />
+            <img class="mark-logo" src="/logo-concepts/03-open-frame-mark.svg" alt="" />
+          </button>
+          <div class="concept-copy">
+            <span>03 / STRUCTURAL</span>
+            <h2>Open Frame</h2>
+            <p>A V inside an intentionally incomplete viewport. It connects the identity to websites while keeping the symbol abstract.</p>
+            <b>Best for: web focus</b>
+          </div>
+        </article>
+
+        <article class="concept-card" data-concept="04">
+          <button class="concept-preview" type="button" aria-label="Open Axis concept">
+            <img class="full-logo" src="/logo-concepts/04-axis.svg" alt="Axis Vectra Systems logo" />
+            <img class="mark-logo" src="/logo-concepts/04-axis-mark.svg" alt="" />
+          </button>
+          <div class="concept-copy">
+            <span>04 / SYSTEMATIC</span>
+            <h2>Axis</h2>
+            <p>A precise intersection and offset point. It feels engineered and adaptable, with a strong app-icon silhouette.</p>
+            <b>Best for: systems thinking</b>
+          </div>
+        </article>
+
+        <article class="concept-card" data-concept="05">
+          <button class="concept-preview" type="button" aria-label="Open Fold concept">
+            <img class="full-logo" src="/logo-concepts/05-fold.svg" alt="Fold Vectra Systems logo" />
+            <img class="mark-logo" src="/logo-concepts/05-fold-mark.svg" alt="" />
+          </button>
+          <div class="concept-copy">
+            <span>05 / EXPRESSIVE</span>
+            <h2>Fold</h2>
+            <p>Two planes form a V with a subtle dimensional shift. More visual personality, while remaining simple enough for small sizes.</p>
+            <b>Best for: creative energy</b>
+          </div>
+        </article>
+
+        <article class="concept-card" data-concept="06">
+          <button class="concept-preview" type="button" aria-label="Open Word Signal concept">
+            <img class="full-logo" src="/logo-concepts/06-word-signal.svg" alt="Word Signal Vectra Systems logo" />
+            <img class="mark-logo" src="/logo-concepts/06-word-signal-mark.svg" alt="" />
+          </button>
+          <div class="concept-copy">
+            <span>06 / EDITORIAL</span>
+            <h2>Word Signal</h2>
+            <p>A typography-first direction with one sharp signal embedded in the name. Mature, minimal, and easy to pair with project imagery.</p>
+            <b>Best for: understated premium</b>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <dialog id="conceptDialog">
+      <button class="dialog-close" type="button" aria-label="Close">×</button>
+      <img id="dialogLogo" alt="" />
+      <div>
+        <span id="dialogNumber"></span>
+        <h2 id="dialogTitle"></h2>
+        <p id="dialogText"></p>
+      </div>
+    </dialog>
+
+    <script type="module" src="/logo-lab.js"></script>
+  </body>
+</html>
