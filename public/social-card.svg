@@ -12,8 +12,12 @@
   <rect width="1200" height="630" fill="url(#grid)"/>
   <circle cx="925" cy="180" r="360" fill="url(#glow)"/>
   <path d="M72 64v502M1128 64v502" stroke="#2b303d"/>
-  <text x="92" y="112" fill="#7795ff" font-family="sans-serif" font-size="28" font-weight="700">[vectra]</text>
-  <text x="242" y="112" fill="#9299a8" font-family="sans-serif" font-size="20">systems</text>
+  <g transform="translate(92 65) scale(.38)">
+    <path d="M48 36H28v108h20M118 36h20v108h-20" fill="none" stroke="#7795ff" stroke-width="8"/>
+    <path d="m59 62 28 59 28-59" fill="none" stroke="#f3f4f6" stroke-width="10" stroke-linejoin="round"/>
+  </g>
+  <text x="157" y="112" fill="#f3f4f6" font-family="sans-serif" font-size="28" font-weight="600">vectra</text>
+  <text x="157" y="136" fill="#9299a8" font-family="sans-serif" font-size="11" letter-spacing="4">SYSTEMS</text>
   <text x="92" y="258" fill="#f3f4f6" font-family="sans-serif" font-size="54" font-weight="600">High-performance</text>
   <text x="92" y="348" fill="#7795ff" font-family="sans-serif" font-size="82" font-weight="600">Websites.</text>
   <text x="96" y="425" fill="#9299a8" font-family="sans-serif" font-size="24">Strategy · Design · Development · Integrations · Launch</text>

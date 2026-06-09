@@ -149,31 +149,18 @@ button {
 }
 
 .logo {
+  display: block;
   justify-self: start;
-  font: 600 15px var(--sans);
-  letter-spacing: -0.03em;
+  width: 142px;
+  height: 40px;
 }
 
-.logo__bracket {
-  color: var(--accent);
-  transition: transform 180ms ease;
-}
-
-.logo:hover .logo__bracket:first-child {
-  display: inline-block;
-  transform: translateX(-3px);
-}
-
-.logo:hover .logo__bracket:nth-child(3) {
-  display: inline-block;
-  transform: translateX(3px);
-}
-
-.logo__sub {
-  margin-left: 8px;
-  color: var(--muted);
-  font-size: 11px;
-  font-weight: 400;
+.logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: left center;
 }
 
 .site-nav {
@@ -1123,6 +1110,17 @@ main > section:not(.hero) {
   color: var(--accent);
 }
 
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-brand img {
+  width: 20px;
+  height: 20px;
+}
+
 .service-dialog {
   width: min(540px, calc(100% - 32px));
   padding: 38px;
@@ -1247,6 +1245,11 @@ main > section:not(.hero) {
 @media (max-width: 1020px) {
   .site-header {
     grid-template-columns: 1fr auto;
+  }
+
+  .logo {
+    width: 112px;
+    height: 34px;
   }
 
   .site-nav {
