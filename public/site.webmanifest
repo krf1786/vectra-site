@@ -1,0 +1,16 @@
+{
+  "name": "Vectra Systems",
+  "short_name": "Vectra",
+  "description": "High-performance websites for businesses that need more than a template.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0e1015",
+  "theme_color": "#0e1015",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Vectra Systems designs and builds fast, accessible websites for businesses that need more than a template."
+    />
+    <meta name="theme-color" content="#0e1015" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Vectra Systems | High-Performance Websites" />
+    <meta
+      property="og:description"
+      content="Strategy, design, development, integrations, and launch handled as one production system."
+    />
+    <meta property="og:image" content="/social-card.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Vectra Systems | High-Performance Websites" />
+    <meta
+      name="twitter:description"
+      content="Fast, accessible websites for businesses that need more than a template."
+    />
+    <meta name="twitter:image" content="/social-card.jpg" />
+    <title>Vectra Systems | High-Performance Websites</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <canvas class="particle-field" id="particleField" aria-hidden="true"></canvas>
+    <div class="cursor" id="cursor" aria-hidden="true">
+      <span class="cursor__horizontal"></span>
+      <span class="cursor__vertical"></span>
+      <span class="cursor__dot"></span>
+    </div>
+    <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="logo" href="#top" aria-label="Vectra Systems home" data-hoverable>
+        <span class="logo__bracket">[</span><span>vectra</span><span class="logo__bracket">]</span>
+        <span class="logo__sub">systems</span>
+      </a>
+
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="siteNav">
+        <span></span><span></span>
+        <span class="sr-only">Toggle navigation</span>
+      </button>
+
+      <nav class="site-nav" id="siteNav" aria-label="Primary navigation">
+        <a href="#services">Websites</a>
+        <a href="#work">Work</a>
+        <a href="#stack">Capabilities</a>
+        <a href="#process">Process</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="header-action">
+        <span class="system-status"><i></i><span>Taking on new work</span></span>
+        <a class="button button--small button--primary magnetic" href="#contact">Plan a site <span>→</span></a>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero section-shell" id="services" aria-labelledby="hero-title">
+        <div class="hero__copy">
+          <div class="eyebrow-row reveal">
+            <span class="tag">Web · Design · Build</span>
+            <span>EST. 2021</span>
+          </div>
+
+          <div class="hero__heading reveal">
+            <p class="section-index">[000] / WEB PRODUCTION STUDIO</p>
+            <h1 id="hero-title">
+              <span>High-performance</span>
+              <strong>Websites.</strong>
+            </h1>
+            <p class="hero__intro">
+              Strategy, design, development, and launch for businesses that need more than a
+              template. Built to look sharp, load fast, and make the next action obvious.
+            </p>
+          </div>
+
+          <ul class="capability-list reveal" aria-label="Core capabilities">
+            <li><span>→</span> Clear <em>Positioning.</em></li>
+            <li><span>→</span> Responsive <em>Design.</em></li>
+            <li><span>→</span> Production <em>Development.</em></li>
+            <li><span>→</span> Connected <em>Workflows.</em></li>
+          </ul>
+
+          <div class="hero__actions reveal">
+            <a class="button button--primary magnetic" href="#contact">Plan your website <span>→</span></a>
+            <a class="button button--ghost magnetic" href="#work">View website work</a>
+          </div>
+
+          <div class="terminal reveal" aria-label="Website delivery standards">
+            <div class="terminal__bar">
+              <span>What ships with every site</span>
+            </div>
+            <p><b>✓</b> responsive · <b>✓</b> accessible · <b>✓</b> owner-ready · <strong>→</strong> built for production</p>
+          </div>
+        </div>
+
+        <div class="hero__systems">
+          <div class="section-heading reveal">
+            <div>
+              <p class="section-index">[001]</p>
+              <h2>Website Systems</h2>
+            </div>
+            <span>4 ways to build</span>
+          </div>
+
+          <div class="service-grid">
+            <button class="service-card reveal" type="button" data-service="marketing" data-tilt>
+              <span class="service-card__top">
+                <span class="service-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3zM3 9h18M7 7h.01M10 7h.01M6 13h7M6 16h11"/></svg>
+                </span>
+                <span>WEB_01</span>
+              </span>
+              <strong>Marketing Websites</strong>
+              <p>Clear, polished sites that explain the offer, establish trust, and turn interest into action.</p>
+              <span class="service-card__footer"><span>Strategy + full build</span><b>Inspect →</b></span>
+            </button>
+
+            <button class="service-card reveal" type="button" data-service="commerce" data-tilt>
+              <span class="service-card__top">
+                <span class="service-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 11h11l2-7H7M9 20h.01M17 20h.01M9 11h8"/></svg>
+                </span>
+                <span>WEB_02</span>
+              </span>
+              <strong>E-commerce</strong>
+              <p>Focused storefronts that make products easy to understand, browse, purchase, and manage.</p>
+              <span class="service-card__footer"><span>Commerce + integrations</span><b>Inspect →</b></span>
+            </button>
+
+            <button class="service-card reveal" type="button" data-service="campaign" data-tilt>
+              <span class="service-card__top">
+                <span class="service-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4zM8 8h8M8 12h5M8 16h8M17 12l2 2-2 2"/></svg>
+                </span>
+                <span>WEB_03</span>
+              </span>
+              <strong>Landing Pages</strong>
+              <p>Purpose-built campaign pages with one audience, one offer, and one clear conversion path.</p>
+              <span class="service-card__footer"><span>Campaign + analytics</span><b>Inspect →</b></span>
+            </button>
+
+            <button class="service-card reveal" type="button" data-service="optimization" data-tilt>
+              <span class="service-card__top">
+                <span class="service-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18V6M4 18h16M7 14l4-4 3 2 5-6M16 6h3v3"/></svg>
+                </span>
+                <span>WEB_04</span>
+              </span>
+              <strong>Redesign &amp; Optimization</strong>
+              <p>Focused improvements for sites that are slow, unclear, inaccessible, or difficult to maintain.</p>
+              <span class="service-card__footer"><span>Audit + rebuild</span><b>Inspect →</b></span>
+            </button>
+          </div>
+
+          <div class="metrics reveal">
+            <span><b>01</b> strategy included</span>
+            <span><b>02</b> responsive by default</span>
+            <span><b>03</b> launch QA</span>
+            <span>you own the finished site</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="work section-shell" id="work" aria-labelledby="work-title">
+        <div class="section-heading section-heading--large reveal">
+          <div>
+            <p class="section-index">[002] / WEBSITE WORK</p>
+            <h2 id="work-title">Websites built around the next action.</h2>
+          </div>
+          <p>
+            Representative website engagements, shown without invented client names or
+            unsupported performance claims.
+          </p>
+        </div>
+
+        <div class="work-grid">
+          <article class="work-card reveal">
+            <div class="work-card__visual work-card__visual--automation" aria-hidden="true">
+              <div class="editorial-preview editorial-preview--b2b">
+                <span>Northline</span>
+                <h4>Move the work<br />forward.</h4>
+                <p>Strategy for complex operations.</p>
+                <em>Start a conversation →</em>
+              </div>
+              <b>01</b>
+            </div>
+            <div class="work-card__body">
+              <p class="section-index">B2B / MARKETING WEBSITE</p>
+              <h3>Complex offer, clear website</h3>
+              <p>
+                Turn a technical service into a focused story that helps the right buyer
+                understand the value and take the next step.
+              </p>
+              <dl>
+                <div><dt>Typical output</dt><dd>Messaging · UX · CMS · lead capture</dd></div>
+                <div><dt>Designed for</dt><dd>Services with a considered sales cycle</dd></div>
+              </dl>
+            </div>
+          </article>
+
+          <article class="work-card reveal">
+            <div class="work-card__visual work-card__visual--web" aria-hidden="true">
+              <div class="editorial-preview editorial-preview--shop">
+                <span>FORM / 02</span>
+                <div class="product-shape"></div>
+                <h4>Objects for<br />daily rituals.</h4>
+                <em>Shop the collection →</em>
+              </div>
+              <b>02</b>
+            </div>
+            <div class="work-card__body">
+              <p class="section-index">RETAIL / E-COMMERCE</p>
+              <h3>Focused product storefront</h3>
+              <p>
+                Make product value easier to scan, comparison easier to navigate, and the
+                path from discovery to checkout feel deliberate.
+              </p>
+              <dl>
+                <div><dt>Typical output</dt><dd>Storefront · catalog UX · checkout · analytics</dd></div>
+                <div><dt>Designed for</dt><dd>Growing product businesses</dd></div>
+              </dl>
+            </div>
+          </article>
+
+          <article class="work-card reveal">
+            <div class="work-card__visual work-card__visual--prepress" aria-hidden="true">
+              <div class="editorial-preview editorial-preview--local">
+                <span>Hearth &amp; Stone</span>
+                <h4>Built carefully.<br />Made to last.</h4>
+                <div class="local-details"><i></i><p>Residential craft<br />Hudson Valley</p></div>
+                <em>Request a consultation →</em>
+              </div>
+              <b>03</b>
+            </div>
+            <div class="work-card__body">
+              <p class="section-index">SERVICE / LEAD GENERATION</p>
+              <h3>Local service lead engine</h3>
+              <p>
+                Pair strong service pages with credible proof, local search foundations, and
+                a frictionless request flow.
+              </p>
+              <dl>
+                <div><dt>Typical output</dt><dd>Service pages · SEO setup · forms · tracking</dd></div>
+                <div><dt>Designed for</dt><dd>Businesses that grow through inquiries</dd></div>
+              </dl>
+            </div>
+          </article>
+        </div>
+
+        <p class="work-note reveal">
+          <span>NOTE_01</span>
+          Engagements are shown by website type until client work is cleared for publication. No
+          fabricated names, logos, or outcomes.
+        </p>
+      </section>
+
+      <section class="stack section-shell" id="stack" aria-labelledby="stack-title">
+        <div class="section-heading section-heading--large reveal">
+          <div>
+            <p class="section-index">[003] / CAPABILITIES</p>
+            <h2 id="stack-title">Everything needed to ship the site.</h2>
+          </div>
+          <p>One connected process from positioning through launch and handoff.</p>
+        </div>
+
+        <div class="stack-layout">
+          <div class="stack-terminal reveal">
+            <div class="terminal__bar">
+              <span>Website delivery framework</span>
+            </div>
+            <pre><code><span>project:</span> high_performance_website
+<span>principles:</span>
+  - clear_message
+  - fast_experience
+  - accessible_interface
+  - maintainable_handoff
+<span>status:</span> <b>ready_to_launch</b></code></pre>
+          </div>
+          <div class="stack-groups">
+            <article class="stack-group reveal">
+              <span>01</span><h3>Strategy</h3>
+              <p>Positioning · sitemap · content hierarchy · conversion paths</p>
+            </article>
+            <article class="stack-group reveal">
+              <span>02</span><h3>Experience</h3>
+              <p>Responsive design · accessibility · interaction · content systems</p>
+            </article>
+            <article class="stack-group reveal">
+              <span>03</span><h3>Engineering</h3>
+              <p>Development · CMS · commerce · APIs · analytics · automation</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="process section-shell" id="process" aria-labelledby="process-title">
+        <div class="section-heading section-heading--large reveal">
+          <div>
+            <p class="section-index">[004] / EXECUTION</p>
+            <h2 id="process-title">A direct path to launch.</h2>
+          </div>
+          <p>A practical website process with working checkpoints throughout.</p>
+        </div>
+
+        <ol class="process-grid">
+          <li class="reveal"><span>01</span><h3>Discover</h3><p>Clarify the audience, offer, goals, constraints, and required integrations.</p></li>
+          <li class="reveal"><span>02</span><h3>Structure</h3><p>Shape the message, sitemap, user paths, wireframes, and visual direction.</p></li>
+          <li class="reveal"><span>03</span><h3>Build</h3><p>Develop responsive pages in working cycles with content and QA in the loop.</p></li>
+          <li class="reveal"><span>04</span><h3>Launch</h3><p>Test, connect analytics, deploy, document, and hand over a site you control.</p></li>
+        </ol>
+      </section>
+
+      <section class="contact section-shell" id="contact" aria-labelledby="contact-title">
+        <div class="contact__copy reveal">
+          <p class="section-index">[005] / PLAN YOUR WEBSITE</p>
+          <h2 id="contact-title">What should your website do better?</h2>
+          <p>Share what you sell, who the site is for, and what you want visitors to do next.</p>
+          <a href="mailto:hello@vectra.systems">hello@vectra.systems ↗</a>
+        </div>
+
+        <form class="contact-form reveal" id="contactForm" novalidate>
+          <label class="honeypot" aria-hidden="true">
+            <span>Confirmation</span>
+            <input type="text" name="company_website_confirm" tabindex="-1" autocomplete="off" />
+          </label>
+          <div class="form-row">
+            <label>
+              <span>Name</span>
+              <input type="text" name="name" autocomplete="name" required placeholder="Your name" />
+            </label>
+            <label>
+              <span>Email</span>
+              <input type="email" name="email" autocomplete="email" required placeholder="you@company.com" />
+            </label>
+          </div>
+          <div class="form-row">
+            <label>
+              <span>Company</span>
+              <input type="text" name="company" autocomplete="organization" placeholder="Company or team" />
+            </label>
+            <label>
+              <span>Current website</span>
+              <input type="url" name="current_url" inputmode="url" placeholder="https://example.com" />
+            </label>
+          </div>
+          <div class="form-row">
+            <label>
+              <span>Project type</span>
+              <select name="service" required>
+                <option value="">Select a website type</option>
+                <option>New marketing website</option>
+                <option>Website redesign</option>
+                <option>E-commerce website</option>
+                <option>Landing page or campaign</option>
+                <option>Performance or accessibility improvements</option>
+                <option>Not sure yet</option>
+              </select>
+            </label>
+            <label>
+              <span>Approximate size</span>
+              <select name="page_count">
+                <option value="">Not sure yet</option>
+                <option>1 landing page</option>
+                <option>2–5 pages</option>
+                <option>6–15 pages</option>
+                <option>16+ pages</option>
+                <option>Product catalog or application</option>
+              </select>
+            </label>
+          </div>
+          <div class="form-row">
+            <label>
+              <span>Target timing</span>
+              <select name="timeline">
+                <option value="">Not sure yet</option>
+                <option>As soon as practical</option>
+                <option>Within 1–2 months</option>
+                <option>Within 3–6 months</option>
+                <option>Exploring for later</option>
+              </select>
+            </label>
+            <label>
+              <span>Integrations</span>
+              <input type="text" name="integrations" placeholder="CMS, CRM, payments, booking..." />
+            </label>
+          </div>
+          <label>
+            <span>Website brief</span>
+            <textarea name="message" rows="5" required placeholder="What do you sell, who is it for, and what should visitors do next?"></textarea>
+          </label>
+          <div class="form-footer">
+            <div>
+              <p id="formStatus" role="status" aria-live="polite">No mailing list. Just a direct reply.</p>
+              <a class="form-fallback" id="formFallback" href="mailto:hello@vectra.systems">Send by email instead</a>
+            </div>
+            <button class="button button--primary magnetic" id="submitButton" type="submit">Plan my website <span>→</span></button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>© <span id="copyrightYear"></span> <b>[vectra]</b> systems</span>
+      <span>High-performance websites, built as production systems.</span>
+      <span class="footer-status"><i></i> Available for select projects · <time id="liveClock">--:--:-- UTC</time></span>
+    </footer>
+
+    <dialog class="service-dialog" id="serviceDialog">
+      <button class="dialog-close" type="button" aria-label="Close">×</button>
+      <p class="section-index" id="dialogIndex"></p>
+      <h2 id="dialogTitle"></h2>
+      <p id="dialogDescription"></p>
+      <ul id="dialogList"></ul>
+      <a class="button button--primary" href="#contact">Plan this website <span>→</span></a>
+    </dialog>
+
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
