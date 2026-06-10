@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="light" cx="50%" cy="0%" r="100%">
+      <stop stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#eceeec"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#light)"/>
+  <path d="M72 0v630M1128 0v630" stroke="#d8dbd6"/>
+  <text x="74" y="82" fill="#16201f" font-family="Manrope,Arial,sans-serif" font-size="28" font-weight="600">Vectra</text>
+  <text x="169" y="81" fill="#137b8b" font-family="IBM Plex Mono,monospace" font-size="11" font-weight="500" letter-spacing="3">SYSTEMS</text>
+  <circle cx="1098" cy="72" r="5" fill="#137b8b"/>
+  <text x="1080" y="78" fill="#76817e" font-family="IBM Plex Mono,monospace" font-size="14" text-anchor="end" letter-spacing="1.5">EST. 2021</text>
+  <text x="600" y="343" fill="#e2e5e1" font-family="Manrope,Arial,sans-serif" font-size="190" font-weight="200" text-anchor="middle" letter-spacing="8">VECTRA</text>
+  <circle cx="98" cy="428" r="5" fill="#137b8b"/>
+  <text x="118" y="435" fill="#137b8b" font-family="IBM Plex Mono,monospace" font-size="15" font-weight="500" letter-spacing="2">WHAT WE DO</text>
+  <text x="92" y="494" fill="#16201f" font-family="Manrope,Arial,sans-serif" font-size="44" font-weight="700">Beautiful, high-performance websites.</text>
+  <text x="92" y="552" fill="#76817e" font-family="IBM Plex Mono,monospace" font-size="17" letter-spacing="1">TRADITIONAL STANDARDS — MODERN SOLUTIONS</text>
+</svg>
