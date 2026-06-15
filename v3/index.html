@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Vectra — a web design and development studio. Considered digital experiences, designed and engineered with direction." />
+  <meta name="theme-color" content="#070708" />
+  <title>Vectra — Digital craft, with direction</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+  <canvas id="scene" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="nav">
+    <a class="wordmark" href="#top">Vectra</a>
+    <a class="nav-cta" href="mailto:hello@vectra.systems">Start a project</a>
+  </header>
+
+  <main id="top">
+
+    <section class="hero">
+      <p class="eyebrow reveal" data-hero>Web design &amp; development studio</p>
+      <h1 id="headline" aria-label="Digital craft, with direction.">
+        <span class="line" data-split>Digital craft,</span>
+        <span class="line"><em data-split>with direction.</em></span>
+      </h1>
+      <p class="lede reveal" data-hero>
+        Vectra designs and builds considered web experiences —
+        quiet in form, precise in execution.
+      </p>
+      <a class="cta reveal" data-hero href="mailto:hello@vectra.systems">
+        <span>Start a project</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <div class="scroll-hint" aria-hidden="true"><span></span></div>
+    </section>
+
+    <section class="capabilities">
+      <p class="eyebrow reveal">What we do</p>
+      <ul>
+        <li class="reveal">
+          <span class="index">01</span>
+          <h2>Design</h2>
+          <p>Identity, interface, and interaction — composed with restraint and intent.</p>
+        </li>
+        <li class="reveal">
+          <span class="index">02</span>
+          <h2>Engineering</h2>
+          <p>Fast, accessible, durable builds. The craft continues beneath the surface.</p>
+        </li>
+        <li class="reveal">
+          <span class="index">03</span>
+          <h2>Direction</h2>
+          <p>Strategy and stewardship from first sketch to launch — one team, zero hand-offs.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="ethos">
+      <p class="reveal">
+        We believe the best work is felt before it is noticed —
+        <em>clarity over noise, always.</em>
+      </p>
+    </section>
+
+    <section class="contact">
+      <p class="eyebrow reveal">Begin</p>
+      <a class="big-link reveal" href="mailto:hello@vectra.systems">hello@vectra.systems</a>
+    </section>
+
+  </main>
+
+  <footer>
+    <span>© 2026 Vectra</span>
+    <span>Designed &amp; built in-house</span>
+  </footer>
+
+  <script>
+    // Scroll reveals — independent of three.js, so the page never blanks
+    (function () {
+      var els = document.querySelectorAll(".reveal:not([data-hero])");
+      if (!("IntersectionObserver" in window)) {
+        document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("in"); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in");
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      els.forEach(function (el, idx) {
+        el.style.transitionDelay = (idx % 4) * 90 + "ms";
+        io.observe(el);
+      });
+    })();
+  </script>
+
+  <script type="module">
+    /* ============================================================
+       Vectra — unified scene
+       1 mouse ripples · 2 entrance · 3 scroll camera ·
+       4 letter stagger · 6 VECTRA morph · 7 color shift
+       ============================================================ */
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    /* ---------- headline: letter stagger (4) ---------- */
+
+    const HERO_TEXT_AT = 2400; // ms after load, when entrance settles
+
+    function splitChars() {
+      document.querySelectorAll("[data-split]").forEach((el) => {
+        const text = el.textContent;
+        el.textContent = "";
+        for (const ch of text) {
+          const s = document.createElement("span");
+          s.className = "ch";
+          s.textContent = ch === " " ? " " : ch;
+          el.appendChild(s);
+        }
+      });
+    }
+
+    function playHeroText(delay = 0) {
+      const chs = document.querySelectorAll("#headline .ch");
+      chs.forEach((c, i) => setTimeout(() => c.classList.add("in"), delay + i * 36));
+      document.querySelectorAll("[data-hero]").forEach((el, i) =>
+        setTimeout(() => el.classList.add("in"), delay + chs.length * 36 + 200 + i * 160));
+    }
+
+    if (reduceMotion) {
+      document.querySelectorAll("[data-hero]").forEach((el) => el.classList.add("in"));
+    } else {
+      splitChars();
+      playHeroText(HERO_TEXT_AT);
+    }
+
+    /* ---------- three.js scene ---------- */
+
+    let THREE;
+    try {
+      THREE = await import("https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js");
+    } catch (err) {
+      console.warn("three.js failed to load — page continues without the 3D scene.", err);
+      // make sure hero text still appears even with no scene
+      if (!reduceMotion) playHeroText(300);
+    }
+
+    if (THREE) init();
+
+    function init() {
+      const canvas = document.getElementById("scene");
+
+      // mobile: smaller GPU budget, touch input, address-bar resizes
+      const isMobile = window.matchMedia("(max-width: 768px)").matches
+        || (navigator.maxTouchPoints > 0 && window.matchMedia("(pointer: coarse)").matches);
+      const MAX_DPR = isMobile ? 1.5 : 2;
+
+      const renderer = new THREE.WebGLRenderer({
+        canvas, antialias: false, alpha: true, powerPreference: "high-performance",
+      });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, MAX_DPR));
+      renderer.setSize(window.innerWidth, window.innerHeight);
+
+      const scene = new THREE.Scene();
+      scene.fog = new THREE.FogExp2(0x070708, 0.042);
+
+      // wider FOV on narrow screens so the wave still fills the frame
+      const camera = new THREE.PerspectiveCamera(isMobile ? 58 : 46, window.innerWidth / window.innerHeight, 0.1, 120);
+      camera.position.set(0, 2.1, 14);
+      camera.lookAt(0, 0.4, 0);
+
+      /* ----- geometry: one big field, deep enough to fly through (3) ----- */
+
+      const COLS = isMobile ? 130 : 220,
+            ROWS = isMobile ? 100 : 170,
+            WIDTH = 50, DEPTH = 64;
+      const COUNT = COLS * ROWS;
+
+      const positions = new Float32Array(COUNT * 3);
+      const starts = new Float32Array(COUNT * 3);    // entrance chaos (2)
+      const textTargets = new Float32Array(COUNT * 3); // VECTRA morph (6)
+      const seeds = new Float32Array(COUNT);
+
+      // sample "VECTRA" from an offscreen canvas (6)
+      const cv = document.createElement("canvas");
+      cv.width = 480; cv.height = 120;
+      const cx = cv.getContext("2d");
+      cx.fillStyle = "#fff";
+      cx.font = "300 92px Georgia, serif";
+      cx.textAlign = "center"; cx.textBaseline = "middle";
+      cx.fillText("VECTRA", 240, 64);
+      const img = cx.getImageData(0, 0, 480, 120).data;
+      const textPts = [];
+      for (let y = 0; y < 120; y += 2) for (let x = 0; x < 480; x += 2) {
+        if (img[(y * 480 + x) * 4 + 3] > 128) {
+          textPts.push([(x / 480 - 0.5) * 26, (0.5 - y / 120) * 6.5 + 2.6, -40]);
+        }
+      }
+
+      let i = 0;
+      for (let x = 0; x < COLS; x++) {
+        for (let z = 0; z < ROWS; z++) {
+          positions[i * 3] = (x / (COLS - 1) - 0.5) * WIDTH;
+          positions[i * 3 + 1] = 0;
+          positions[i * 3 + 2] = (z / (ROWS - 1) - 0.5) * DEPTH - 8;
+
+          // chaos sphere around the camera's start
+          const r = 18 + Math.random() * 16;
+          const th = Math.random() * Math.PI * 2;
+          const ph = Math.acos(2 * Math.random() - 1);
+          starts[i * 3] = r * Math.sin(ph) * Math.cos(th);
+          starts[i * 3 + 1] = r * Math.cos(ph) * 0.55;
+          starts[i * 3 + 2] = r * Math.sin(ph) * Math.sin(th) * 0.6;
+
+          const p = textPts[i % textPts.length];
+          textTargets[i * 3] = p[0] + (Math.random() - 0.5) * 0.14;
+          textTargets[i * 3 + 1] = p[1] + (Math.random() - 0.5) * 0.14;
+          textTargets[i * 3 + 2] = p[2] + (Math.random() - 0.5) * 0.4;
+
+          seeds[i] = Math.random();
+          i++;
+        }
+      }
+
+      const geometry = new THREE.BufferGeometry();
+      geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+      geometry.setAttribute("aStart", new THREE.BufferAttribute(starts, 3));
+      geometry.setAttribute("aText", new THREE.BufferAttribute(textTargets, 3));
+      geometry.setAttribute("aSeed", new THREE.BufferAttribute(seeds, 1));
+
+      /* ----- material: wave + ripple + entrance + morph (1, 2, 6) ----- */
+
+      const uniforms = {
+        uTime: { value: 0 },
+        uPixelRatio: { value: Math.min(window.devicePixelRatio, 2) },
+        uInk: { value: new THREE.Color(0x827d73) },
+        uAccent: { value: new THREE.Color(0xe0cfa8) },
+        uEntrance: { value: reduceMotion ? 1 : 0 },
+        uMorph: { value: 0 },
+        uMouse: { value: new THREE.Vector2(999, 999) },
+        uRipple: { value: 0 },
+      };
+
+      const material = new THREE.ShaderMaterial({
+        uniforms,
+        transparent: true,
+        depthWrite: false,
+        blending: THREE.AdditiveBlending,
+        vertexShader: `
+          uniform float uTime;
+          uniform float uPixelRatio;
+          uniform float uEntrance;
+          uniform float uMorph;
+          uniform vec2 uMouse;
+          uniform float uRipple;
+          attribute float aSeed;
+          attribute vec3 aStart;
+          attribute vec3 aText;
+          varying float vElev;
+          varying float vSeed;
+
+          float wave(vec2 p, float t) {
+            float e = 0.0;
+            e += sin(p.x * 0.55 + t * 0.55) * 0.42;
+            e += sin(p.y * 0.85 - t * 0.38) * 0.30;
+            e += sin((p.x + p.y) * 0.32 + t * 0.22) * 0.55;
+            e += sin(length(p) * 0.65 - t * 0.45) * 0.18;
+            return e;
+          }
+
+          void main() {
+            // wave surface
+            vec3 tgt = position;
+            tgt.y = wave(tgt.xz, uTime);
+
+            // mouse ripple (1)
+            float dist = distance(tgt.xz, uMouse);
+            tgt.y += sin(dist * 5.0 - uTime * 7.0) * exp(-dist * 0.55) * 1.6 * uRipple;
+
+            // entrance from chaos (2)
+            float pe = clamp(uEntrance - aSeed * 0.25, 0.0, 1.0) / 0.75;
+            pe = clamp(pe, 0.0, 1.0);
+            pe = 1.0 - pow(1.0 - pe, 3.0);
+            vec3 p = mix(aStart, tgt, pe);
+
+            // morph to VECTRA (6)
+            float pm = clamp(uMorph - aSeed * 0.2, 0.0, 1.0) / 0.8;
+            pm = pm * pm * (3.0 - 2.0 * pm);
+            p = mix(p, aText, pm);
+
+            vElev = mix(tgt.y, 1.15, pm);
+            vSeed = aSeed;
+
+            vec4 mv = modelViewMatrix * vec4(p, 1.0);
+            gl_Position = projectionMatrix * mv;
+
+            float size = (0.9 + aSeed * 1.3) * uPixelRatio;
+            gl_PointSize = size * (10.0 / -mv.z);
+          }
+        `,
+        fragmentShader: `
+          uniform vec3 uInk;
+          uniform vec3 uAccent;
+          varying float vElev;
+          varying float vSeed;
+
+          void main() {
+            float d = length(gl_PointCoord - 0.5);
+            if (d > 0.5) discard;
+            float soft = smoothstep(0.5, 0.05, d);
+            float crest = smoothstep(0.1, 1.1, vElev);
+            vec3 col = mix(uInk, uAccent, crest);
+            gl_FragColor = vec4(col, soft * (0.5 + crest * 0.55) * (0.75 + 0.25 * vSeed));
+          }
+        `,
+      });
+
+      scene.add(new THREE.Points(geometry, material));
+
+      /* ----- interaction state ----- */
+
+      const mouse = { x: 0, y: 0, tx: 0, ty: 0 };
+      let rippleTarget = 0;
+      const ray = new THREE.Raycaster();
+      const floorPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
+      const hit = new THREE.Vector3();
+      const ndc = new THREE.Vector2();
+
+      function pointTo(clientX, clientY) {
+        mouse.tx = (clientX / window.innerWidth - 0.5) * 2;
+        mouse.ty = (clientY / window.innerHeight - 0.5) * 2;
+        ndc.set((clientX / window.innerWidth) * 2 - 1, -(clientY / window.innerHeight) * 2 + 1);
+        ray.setFromCamera(ndc, camera);
+        if (ray.ray.intersectPlane(floorPlane, hit)) uniforms.uMouse.value.set(hit.x, hit.z);
+        rippleTarget = 1;
+      }
+
+      window.addEventListener("pointermove", (e) => {
+        if (e.pointerType === "touch") return; // touch handled below
+        pointTo(e.clientX, e.clientY);
+      });
+      window.addEventListener("pointerleave", () => (rippleTarget = 0));
+
+      if (isMobile) {
+        // touch: ripple under your finger, fade out after release
+        let fadeTimer;
+        window.addEventListener("touchstart", (e) => {
+          clearTimeout(fadeTimer);
+          pointTo(e.touches[0].clientX, e.touches[0].clientY);
+        }, { passive: true });
+        window.addEventListener("touchmove", (e) => {
+          pointTo(e.touches[0].clientX, e.touches[0].clientY);
+        }, { passive: true });
+        window.addEventListener("touchend", () => {
+          fadeTimer = setTimeout(() => (rippleTarget = 0), 600);
+        }, { passive: true });
+        // no hover parallax on touch — keep the camera steady
+        mouse.tx = 0; mouse.ty = 0;
+      }
+
+      let scrollFrac = 0;
+      function readScroll() {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        scrollFrac = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
+      }
+      window.addEventListener("scroll", readScroll, { passive: true });
+      readScroll();
+
+      // on mobile, the URL bar showing/hiding fires resize constantly —
+      // only rebuild when the width actually changes
+      let lastWidth = window.innerWidth;
+      window.addEventListener("resize", () => {
+        if (isMobile && window.innerWidth === lastWidth) { readScroll(); return; }
+        lastWidth = window.innerWidth;
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        uniforms.uPixelRatio.value = Math.min(window.devicePixelRatio, MAX_DPR);
+        readScroll();
+      });
+
+      /* ----- color palette for scroll shift (7) ----- */
+
+      const champagne = new THREE.Color(0xe0cfa8);
+      const ice = new THREE.Color(0xaad2e4);
+      const blended = new THREE.Color();
+
+      /* ----- loop ----- */
+
+      const clock = new THREE.Clock();
+      let running = true;
+
+      document.addEventListener("visibilitychange", () => {
+        running = !document.hidden;
+        if (running) { clock.getDelta(); tick(); }
+      });
+
+      const ENTRANCE_SECS = 3.2;
+
+      function tick() {
+        if (!running) return;
+
+        const t = clock.getElapsedTime();
+        uniforms.uTime.value = t;
+
+        // entrance progress (2)
+        if (!reduceMotion) uniforms.uEntrance.value = Math.min(t / ENTRANCE_SECS, 1);
+
+        // ripple ease in/out (1)
+        uniforms.uRipple.value += (rippleTarget - uniforms.uRipple.value) * 0.06;
+
+        // scroll-driven camera (3): fly forward through the field
+        const f = scrollFrac;
+        const fe = f * f * (3 - 2 * f); // smoothstep
+        camera.position.z = THREE.MathUtils.lerp(14, -26, fe);
+        camera.position.y = 2.1 + Math.sin(f * Math.PI) * 1.3 - mouse.y * 0.3;
+
+        // gentle mouse parallax
+        mouse.x += (mouse.tx - mouse.x) * 0.035;
+        mouse.y += (mouse.ty - mouse.y) * 0.035;
+        camera.position.x = mouse.x * 0.9;
+        camera.lookAt(mouse.x * 0.3, 0.6 + f * 1.6, camera.position.z - 11);
+
+        // color shift across the journey (7)
+        blended.copy(champagne).lerp(ice, Math.sin(f * Math.PI));
+        uniforms.uAccent.value.copy(blended);
+
+        // VECTRA morph — starts mid-scroll so fast scrollers don't miss it (6)
+        uniforms.uMorph.value = THREE.MathUtils.smoothstep(f, 0.5, 0.74);
+
+        renderer.render(scene, camera);
+        if (!reduceMotion) requestAnimationFrame(tick);
+      }
+
+      if (reduceMotion) {
+        uniforms.uTime.value = 4;
+        renderer.render(scene, camera);
+      } else {
+        tick();
+      }
+    }
+  </script>
+</body>
+</html>
