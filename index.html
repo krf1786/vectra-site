@@ -200,10 +200,23 @@
       cx.textAlign = "center"; cx.textBaseline = "middle";
       cx.fillText("VECTRA", 240, 64);
       const img = cx.getImageData(0, 0, 480, 120).data;
+
+      // Desktop keeps the original wordmark size. On mobile the view is
+      // narrower, so fit VECTRA to ~85% of the visible width at morph depth
+      // (otherwise the left/right letters clip off-screen).
+      let TEXT_W = 26, TEXT_H = 6.5;
+      if (isMobile) {
+        const MORPH_DIST = 20.7; // approx camera-to-text distance when the morph completes
+        const vFov = (camera.fov * Math.PI) / 180;
+        const visW = 2 * MORPH_DIST * Math.tan(vFov / 2) * (window.innerWidth / window.innerHeight);
+        TEXT_W = Math.min(26, visW * 0.85);
+        TEXT_H = TEXT_W * (6.5 / 26); // preserve the wordmark's aspect ratio
+      }
+
       const textPts = [];
       for (let y = 0; y < 120; y += 2) for (let x = 0; x < 480; x += 2) {
         if (img[(y * 480 + x) * 4 + 3] > 128) {
-          textPts.push([(x / 480 - 0.5) * 26, (0.5 - y / 120) * 6.5 + 2.6, -40]);
+          textPts.push([(x / 480 - 0.5) * TEXT_W, (0.5 - y / 120) * TEXT_H + 2.6, -40]);
         }
       }
 
