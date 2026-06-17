@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Vectra — a web design and development studio. Considered digital experiences, designed and engineered with direction." />
-  <meta name="theme-color" content="#070708" />
+  <meta name="theme-color" content="#15181d" />
   <title>Vectra — Digital craft, with direction</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -18,7 +18,10 @@
   <div class="grain" aria-hidden="true"></div>
 
   <header class="nav">
-    <a class="wordmark" href="#top">Vectra</a>
+    <a class="wordmark" href="#top" aria-label="Vectra Systems">
+      <span>Vectra</span>
+      <span class="systems-word" aria-hidden="true">Systems</span>
+    </a>
     <a class="nav-cta" href="mailto:hello@vectra.systems">Start a project</a>
   </header>
 
@@ -104,6 +107,78 @@
     })();
   </script>
 
+  <script>
+    // Wordmark reveal — Systems assembles from the wave field.
+    (function () {
+      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var word = document.querySelector(".systems-word");
+      if (!word) return;
+
+      if (reduce) {
+        word.classList.add("is-assembling");
+        return;
+      }
+
+      function clamp(n, min, max) {
+        return Math.max(min, Math.min(max, n));
+      }
+
+      function runSystemsReveal() {
+        var rect = word.getBoundingClientRect();
+        var layer = document.createElement("div");
+        layer.className = "systems-particle-layer";
+        document.body.appendChild(layer);
+
+        var count = window.innerWidth < 720 ? 26 : 44;
+        var waveY = window.innerHeight * 0.44;
+        var spread = window.innerWidth < 720 ? 180 : 420;
+        var originX = rect.left + rect.width * 0.35;
+
+        for (var i = 0; i < count; i++) {
+          var p = document.createElement("span");
+          p.className = "systems-particle";
+
+          var sx = clamp(originX + (Math.random() - 0.5) * spread, 8, window.innerWidth - 8);
+          var sy = waveY + (Math.random() - 0.5) * 130;
+          var tx = rect.left + Math.random() * rect.width;
+          var ty = rect.top + Math.random() * rect.height;
+          var mx = sx + (tx - sx) * 0.86;
+          var my = sy + (ty - sy) * 0.86;
+          var delay = 0.16 + i * 0.014 + Math.random() * 0.18;
+          var dur = 3 + Math.random() * 0.45;
+          var size = 1.7 + Math.random() * 2.6;
+
+          p.style.setProperty("--sx", sx.toFixed(1) + "px");
+          p.style.setProperty("--sy", sy.toFixed(1) + "px");
+          p.style.setProperty("--tx", tx.toFixed(1) + "px");
+          p.style.setProperty("--ty", ty.toFixed(1) + "px");
+          p.style.setProperty("--mx", mx.toFixed(1) + "px");
+          p.style.setProperty("--my", my.toFixed(1) + "px");
+          p.style.setProperty("--delay", delay.toFixed(2) + "s");
+          p.style.setProperty("--dur", dur.toFixed(2) + "s");
+          p.style.setProperty("--size", size.toFixed(1) + "px");
+          layer.appendChild(p);
+        }
+
+        window.setTimeout(function () {
+          word.classList.add("is-assembling");
+        }, 3850);
+
+        window.setTimeout(function () {
+          layer.remove();
+        }, 6200);
+      }
+
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(function () {
+          window.setTimeout(runSystemsReveal, 900);
+        });
+      } else {
+        window.setTimeout(runSystemsReveal, 1100);
+      }
+    })();
+  </script>
+
   <script type="module">
     /* ============================================================
        Vectra — unified scene
@@ -172,7 +247,7 @@
       renderer.setSize(window.innerWidth, window.innerHeight);
 
       const scene = new THREE.Scene();
-      scene.fog = new THREE.FogExp2(0x070708, 0.034);
+      scene.fog = new THREE.FogExp2(0x15181d, 0.034);
 
       // wider FOV on narrow screens so the wave still fills the frame
       const camera = new THREE.PerspectiveCamera(isMobile ? 58 : 46, window.innerWidth / window.innerHeight, 0.1, 120);
@@ -256,8 +331,8 @@
       const uniforms = {
         uTime: { value: 0 },
         uPixelRatio: { value: Math.min(window.devicePixelRatio, 2) },
-        uInk: { value: new THREE.Color(0xb3ac9c) },
-        uAccent: { value: new THREE.Color(0xe0cfa8) },
+        uInk: { value: new THREE.Color(0x4aa8e8) },
+        uAccent: { value: new THREE.Color(0x65cfff) },
         uEntrance: { value: reduceMotion ? 1 : 0 },
         uMorph: { value: 0 },
         uMouse: { value: new THREE.Vector2(999, 999) },
@@ -317,7 +392,7 @@
             vec4 mv = modelViewMatrix * vec4(p, 1.0);
             gl_Position = projectionMatrix * mv;
 
-            float size = (0.9 + aSeed * 1.3) * uPixelRatio;
+            float size = (1.15 + aSeed * 1.55) * uPixelRatio;
             gl_PointSize = size * (10.0 / -mv.z);
           }
         `,
@@ -404,8 +479,8 @@
 
       /* ----- color palette for scroll shift (7) ----- */
 
-      const champagne = new THREE.Color(0xe0cfa8);
-      const ice = new THREE.Color(0xaad2e4);
+      const champagne = new THREE.Color(0x65cfff);
+      const ice = new THREE.Color(0x65cfff);
       const blended = new THREE.Color();
 
       /* ----- loop ----- */

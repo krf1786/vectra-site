@@ -1,11 +1,12 @@
-/* Vectra v3 — elegant minimal dark */
+/* Vectra v3 — Polar Lab */
 
 :root {
-  --bg: #070708;
-  --ink: #e9e6df;
-  --ink-dim: #8e8b84;
-  --hairline: rgba(233, 230, 223, 0.12);
-  --accent: #c9b896;
+  --bg: #15181d;
+  --ink: #f4f8fb;
+  --ink-dim: #a4b2bb;
+  --hairline: rgba(244, 248, 251, 0.16);
+  --accent: #3bb5ff;
+  --accent-2: #4ee0a1;
   --serif: "Fraunces", Georgia, serif;
   --sans: "Inter", -apple-system, sans-serif;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -67,16 +68,34 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 2rem clamp(1.5rem, 5vw, 4rem);
-  mix-blend-mode: difference;
 }
 
 .wordmark {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.34em;
   font-family: var(--serif);
   font-weight: 400;
   font-size: 1.35rem;
   letter-spacing: 0.04em;
   color: var(--ink);
   text-decoration: none;
+}
+
+.systems-word {
+  position: relative;
+  display: inline-block;
+  color: var(--ink);
+}
+
+.js .systems-word {
+  opacity: 0;
+  filter: blur(10px);
+  transform: translateY(0.32em);
+}
+
+.js .systems-word.is-assembling {
+  animation: systems-assemble 1.45s var(--ease) forwards;
 }
 
 .nav-cta {
@@ -91,6 +110,72 @@ body {
 }
 
 .nav-cta:hover { border-color: var(--ink); }
+
+.systems-particle-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 11;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.systems-particle {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background: var(--ink);
+  box-shadow: 0 0 10px rgba(244, 248, 251, 0.86);
+  opacity: 0;
+  transform: translate3d(var(--sx), var(--sy), 0) scale(0.6);
+  animation: systems-from-wave var(--dur) cubic-bezier(0.18, 0.72, 0.12, 1) var(--delay) forwards;
+}
+
+@keyframes systems-assemble {
+  0% {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(0.32em);
+    color: var(--accent);
+  }
+  52% {
+    opacity: 0.88;
+    filter: blur(3px);
+    transform: translateY(0.08em);
+    color: var(--accent);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateX(0);
+    color: var(--ink);
+  }
+}
+
+@keyframes systems-from-wave {
+  0% {
+    opacity: 0;
+    transform: translate3d(var(--sx), var(--sy), 0) scale(0.55);
+  }
+  16% {
+    opacity: 0.95;
+    transform: translate3d(var(--sx), var(--sy), 0) scale(0.9);
+  }
+  36% {
+    opacity: 0.95;
+    transform: translate3d(var(--sx), var(--sy), 0) scale(1);
+  }
+  84% {
+    opacity: 0.95;
+    transform: translate3d(var(--mx), var(--my), 0) scale(1.05);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--tx), var(--ty), 0) scale(0.22);
+  }
+}
 
 /* ---------- shared ---------- */
 
@@ -355,5 +440,13 @@ footer {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .grain, .scroll-hint span { animation: none; }
+  .systems-word,
+  .systems-word::before {
+    animation: none;
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+  .systems-word::before { opacity: 0; }
   .reveal { opacity: 1; transform: none; transition: none; }
 }
