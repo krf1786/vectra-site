@@ -118,12 +118,13 @@ body {
 
 .systems-word {
   position: relative;
+  top: 1px;
   display: inline-block;
   font-family: "Michroma", var(--sans);
   font-size: clamp(0.38rem, 0.55vw, 0.48rem);
   line-height: 1;
-  letter-spacing: 0.28em;
-  padding-left: 0.28em;
+  letter-spacing: 0.32em;
+  padding-left: 0.32em;
   text-transform: uppercase;
   color: var(--accent);
 }
