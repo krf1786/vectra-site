@@ -89,10 +89,9 @@ body {
 
 .wordmark-subline {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  grid-template-columns: clamp(1rem, 1.8vw, 1.5rem) auto clamp(1rem, 1.8vw, 1.5rem);
   align-items: center;
-  gap: 0.48rem;
-  width: 100%;
+  gap: 0.38rem;
 }
 
 .wordmark-rule {
@@ -100,10 +99,21 @@ body {
   height: 1px;
   background: linear-gradient(90deg, var(--accent), #65cfff);
   opacity: 0.9;
+  transform-origin: left center;
 }
 
 .wordmark-rule:last-child {
   background: linear-gradient(90deg, #65cfff, var(--accent));
+  transform-origin: right center;
+}
+
+.js .wordmark-rule {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.wordmark-subline.is-assembling .wordmark-rule {
+  animation: wordmark-rule-in 1.15s var(--ease) 0.18s forwards;
 }
 
 .systems-word {
@@ -112,9 +122,10 @@ body {
   font-family: "Michroma", var(--sans);
   font-size: clamp(0.38rem, 0.55vw, 0.48rem);
   line-height: 1;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.28em;
+  padding-left: 0.28em;
   text-transform: uppercase;
-  color: var(--ink);
+  color: var(--accent);
 }
 
 .js .systems-word {
@@ -155,8 +166,8 @@ body {
   width: var(--size);
   height: var(--size);
   border-radius: 50%;
-  background: var(--ink);
-  box-shadow: 0 0 10px rgba(244, 248, 251, 0.86);
+  background: #65cfff;
+  box-shadow: 0 0 10px rgba(101, 207, 255, 0.9);
   opacity: 0;
   transform: translate3d(var(--sx), var(--sy), 0) scale(0.6);
   animation: systems-from-wave var(--dur) cubic-bezier(0.18, 0.72, 0.12, 1) var(--delay) forwards;
@@ -179,7 +190,24 @@ body {
     opacity: 1;
     filter: blur(0);
     transform: translateX(0);
-    color: var(--ink);
+    color: var(--accent);
+  }
+}
+
+@keyframes wordmark-rule-in {
+  0% {
+    opacity: 0;
+    transform: scaleX(0);
+    filter: blur(2px);
+  }
+  55% {
+    opacity: 1;
+    filter: blur(0);
+  }
+  100% {
+    opacity: 0.9;
+    transform: scaleX(1);
+    filter: blur(0);
   }
 }
 
@@ -470,7 +498,8 @@ footer {
   html { scroll-behavior: auto; }
   .grain, .scroll-hint span { animation: none; }
   .systems-word,
-  .systems-word::before {
+  .systems-word::before,
+  .wordmark-rule {
     animation: none;
     opacity: 1;
     filter: none;

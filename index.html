@@ -116,10 +116,12 @@
     (function () {
       var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       var word = document.querySelector(".systems-word");
+      var subline = document.querySelector(".wordmark-subline");
       if (!word) return;
 
       if (reduce) {
         word.classList.add("is-assembling");
+        if (subline) subline.classList.add("is-assembling");
         return;
       }
 
@@ -166,6 +168,7 @@
 
         window.setTimeout(function () {
           word.classList.add("is-assembling");
+          if (subline) subline.classList.add("is-assembling");
         }, 3850);
 
         window.setTimeout(function () {
