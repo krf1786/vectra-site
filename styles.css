@@ -72,19 +72,26 @@ body {
 
 .wordmark {
   display: inline-flex;
-  align-items: baseline;
-  gap: 0.34em;
+  align-items: center;
+  gap: 0.65rem;
   font-family: var(--serif);
   font-weight: 400;
-  font-size: 1.35rem;
-  letter-spacing: 0.04em;
   color: var(--ink);
   text-decoration: none;
+}
+
+.vectra-wordmark {
+  display: block;
+  width: clamp(7.5rem, 11vw, 9.5rem);
+  height: auto;
+  flex: none;
 }
 
 .systems-word {
   position: relative;
   display: inline-block;
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
   color: var(--ink);
 }
 
