@@ -95,6 +95,8 @@ body {
 }
 
 .wordmark-rule {
+  position: relative;
+  top: 1px;
   display: block;
   height: 1px;
   background: linear-gradient(90deg, var(--accent), #65cfff);
@@ -123,8 +125,8 @@ body {
   font-family: "Michroma", var(--sans);
   font-size: clamp(0.38rem, 0.55vw, 0.48rem);
   line-height: 1;
-  letter-spacing: 0.32em;
-  padding-left: 0.32em;
+  letter-spacing: 0.4em;
+  padding-left: 0.4em;
   text-transform: uppercase;
   color: var(--accent);
 }
