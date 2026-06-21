@@ -68,6 +68,8 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 2rem clamp(1.5rem, 5vw, 4rem);
+  background: var(--bg);
+  border-bottom: 1px solid var(--hairline);
 }
 
 .wordmark {
