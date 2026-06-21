@@ -74,13 +74,13 @@ body {
 .nav::before {
   content: "";
   position: absolute;
-  inset: 0 0 -2rem;
+  inset: 0 0 -5rem;
   z-index: -1;
   pointer-events: none;
   background: linear-gradient(
     to bottom,
     var(--bg) 0%,
-    var(--bg) calc(100% - 2rem),
+    var(--bg) calc(100% - 5rem),
     rgba(21, 24, 29, 0) 100%
   );
 }
