@@ -67,7 +67,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem clamp(1.5rem, 5vw, 4rem);
+  padding: 1.35rem clamp(1.5rem, 5vw, 4rem);
   isolation: isolate;
 }
 
@@ -484,7 +484,7 @@ footer {
     padding: 2.2rem 0;
   }
 
-  .nav { padding: 1.4rem 1.25rem; }
+  .nav { padding: 1rem 1.25rem; }
 
   .nav-cta { font-size: 0.66rem; letter-spacing: 0.16em; }
 
