@@ -293,11 +293,16 @@ html.js .reveal.in {
 .hero .eyebrow { margin-bottom: 1.75rem; }
 
 .hero h1 {
-  font-family: var(--serif);
-  font-weight: 300;
+  font-family: "Libre Caslon Display", Georgia, serif;
+  font-weight: 400;
   font-size: clamp(3rem, 9.5vw, 8.5rem);
   line-height: 1.04;
   letter-spacing: -0.015em;
+}
+
+.hero h1 em {
+  font-family: "Libre Caslon Text", Georgia, serif;
+  font-weight: 400;
 }
 
 .hero h1 .line {

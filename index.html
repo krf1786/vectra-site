@@ -9,7 +9,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400&family=Inter:wght@400;500&family=Michroma&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400&family=Inter:wght@400;500&family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital@0;1&family=Michroma&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./styles.css" />
   <script>document.documentElement.classList.add("js");</script>
 </head>
@@ -338,8 +338,8 @@
       const uniforms = {
         uTime: { value: 0 },
         uPixelRatio: { value: Math.min(window.devicePixelRatio, 2) },
-        uInk: { value: new THREE.Color(0x4aa8e8) },
-        uAccent: { value: new THREE.Color(0x65cfff) },
+        uInk: { value: new THREE.Color(0x6acfff) },
+        uAccent: { value: new THREE.Color(0xb8f1ff) },
         uEntrance: { value: reduceMotion ? 1 : 0 },
         uMorph: { value: 0 },
         uMouse: { value: new THREE.Vector2(999, 999) },
@@ -415,7 +415,7 @@
             float soft = smoothstep(0.5, 0.05, d);
             float crest = smoothstep(0.1, 1.1, vElev);
             vec3 col = mix(uInk, uAccent, crest);
-            gl_FragColor = vec4(col, soft * (0.72 + crest * 0.6) * (0.78 + 0.22 * vSeed));
+            gl_FragColor = vec4(col, soft * (1.05 + crest * 0.75) * (0.84 + 0.16 * vSeed));
           }
         `,
       });
@@ -486,8 +486,8 @@
 
       /* ----- color palette for scroll shift (7) ----- */
 
-      const champagne = new THREE.Color(0x65cfff);
-      const ice = new THREE.Color(0x65cfff);
+      const champagne = new THREE.Color(0xb8f1ff);
+      const ice = new THREE.Color(0xb8f1ff);
       const blended = new THREE.Color();
 
       /* ----- loop ----- */
