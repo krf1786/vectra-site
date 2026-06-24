@@ -406,6 +406,7 @@
         fragmentShader: `
           uniform vec3 uInk;
           uniform vec3 uAccent;
+          uniform float uMorph;
           varying float vElev;
           varying float vSeed;
 
@@ -415,7 +416,11 @@
             float soft = smoothstep(0.5, 0.05, d);
             float crest = smoothstep(0.1, 1.1, vElev);
             vec3 col = mix(uInk, uAccent, crest);
-            gl_FragColor = vec4(col, soft * (1.05 + crest * 0.75) * (0.84 + 0.16 * vSeed));
+            float morphDim = mix(1.0, 0.52, uMorph);
+            gl_FragColor = vec4(
+              col * morphDim,
+              soft * (1.05 + crest * 0.75) * (0.84 + 0.16 * vSeed) * morphDim
+            );
           }
         `,
       });
